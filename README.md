@@ -1,6 +1,6 @@
 # OverDrive MP3 Downloader
 
-As of late 2024, Overdrive discontinues the use of their Overdrive media Console application in favor of the Libby application. This works to play the audiobooks, but doesn't allow you access to the raw, non-DRM MP3 files any more. This means many people who use things like standalone MP3 players can no longer use them to listen to audiobooks from the library. This code allows you to again download the MP3s.
+As of late 2024, Overdrive discontinued their Overdrive Media Console application in favor of the Libby application. This works to play the audiobooks, but doesn't allow you access to the raw, non-DRM MP3 files any more. This means many people who use things like standalone MP3 players can no longer use them to listen to audiobooks from the library. This code allows you to again download the MP3s.
 
 ## Thanks
 
@@ -36,11 +36,11 @@ Once you have the URL changed, hit enter to visit that URL. That should cause yo
 
 ## Running the code to get the MP3s
 I recommend putting the .jar file some where that makes sense for you.  
-Maybe C:\OverdriveMP3Downloader or ~/username/apps/overdrivemp3downlaoder or whatever works for you. Now first to see if this is working, open a prompt in the folder that the jar file is in. For this first test to make sure it works, copy your odm file into this folder. Let's assume for this example, your odm file is MyAudiobook.odm. So you should have both overdrivemp3.jar and MyAudiobook.odm in the same folder.
+Maybe C:\OverdriveMP3Downloader or ~/username/apps/overdrivemp3downloader or whatever works for you. Now first to see if this is working, open a prompt in the folder that the jar file is in. For this first test to make sure it works, copy your odm file into this folder. Let's assume for this example, your odm file is MyAudiobook.odm. So you should have both overdrivemp3.jar and MyAudiobook.odm in the same folder.
 
 Now from that command prompt, type `java -jar overdrivemp3.jar MyAudiobook.odm`
 and that should start the download of the MP3 files.
 ![sample](https://github.com/brianpipa/OverdriveMP3Downloader/blob/main/README-images/terminal-run.png?raw=true)
 
-Once you verify this works, you can try to use the [runscripts](https://github.com/brianpipa/OverdriveMP3Downloader/tree/main/runscripts) On Windows, you should be able to drag an odm file onto the batch file and it will download the MP3s for you. I don't have Windows so can't verify this works, but it should.
+Once you verify this works, you can leave the ODM file wherever you want and just pass it in as a parameter like `java -jar overdrivemp3.jar path\to\MyAudiobook.odm` and you can even try to use the [runscripts](https://github.com/brianpipa/OverdriveMP3Downloader/tree/main/runscripts) On Windows, you should be able to drag an odm file onto the batch file and it will download the MP3s for you. I don't have Windows so can't verify this works, but it should. If you are even more clever, you can configure your browser to automatically run this script on any ODM file you download by associating (in the browser) .odm files with the script. 
 
