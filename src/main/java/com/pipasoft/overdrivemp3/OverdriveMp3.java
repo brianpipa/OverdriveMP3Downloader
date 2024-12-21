@@ -25,18 +25,40 @@ public class OverdriveMp3 {
 	private static OdmParserXpath xpathParser;
 	
 	public static void main(String[] args) throws Exception {
-		String odmFileName = "Dust_9798212197700_9253919.odm";
-		String prefix = odmFileName.replace(".odm", "");
-		String licenseFile = odmFileName+".license";
+		printHeader();
 		
-		File odmFile = new File("./"+odmFileName);
+		if (args.length == 0 || !args[0].endsWith("odm")) {
+			System.err.println("Run this with the path to the .odm file after it like java -jar path/to/file.odm");
+			System.err.println("Aborting");
+			System.exit(1);
+		}
+		
+		
+		//String odmFileName = "Dust_9798212197700_9253919.odm";
+		String fullOdmFileName = args[0];
+		File odmFile = new File(fullOdmFileName);
+		if (!odmFile.exists()) {
+			System.err.println(fullOdmFileName+" does not exist. Aborting.");
+			System.exit(1);			
+		}
+		
 		System.out.println("Using ODM file: "+odmFile.getCanonicalPath());
+		
+		String shortOdmName = odmFile.getName();
+		String outputDir = odmFile.getCanonicalPath().replace(".odm", "");
+		File outputDirFile = new File(outputDir);
+		if (!outputDirFile.exists()) {
+			outputDirFile.mkdir();
+		}
+		
+		String prefix = shortOdmName.replace(".odm", "");
+		String fullPathToLicenseFile = odmFile.getCanonicalPath()+".license";
 		
 		xpathParser = new OdmParserXpath(odmFile);
 
 		String downloadBaseUrl = xpathParser.getBaseUrl();
 		
-		if (!new File(licenseFile).exists()) {
+		if (!new File(fullPathToLicenseFile).exists()) {
 			String clientId = UUID.randomUUID().toString().toUpperCase();		
 			String acquisitionUrl = xpathParser.getAcquisitionUrl();			
 			String mediaId = xpathParser.getMediaId();			
@@ -44,18 +66,32 @@ public class OverdriveMp3 {
 			String hash = Base64.getEncoder().encodeToString(DigestUtils.sha(rawHash.getBytes("UTF-16LE")));			
 			String fullAcquisitionUrl =  acquisitionUrl+"?mediaID="+mediaId+"&ClientID="+clientId+"&OMC="+OMC+"&OS="+OS+"&Hash="+hash;
 			
-			boolean successGetLicense = acquireLicense(licenseFile, fullAcquisitionUrl); 			
-			System.out.println("License acquisition: "+(successGetLicense ? "SUCCESS" : "FAIL"));			
+			boolean successGetLicense = acquireLicense(fullPathToLicenseFile, fullAcquisitionUrl); 			
+			System.out.println("License acquisition: "+(successGetLicense ? "SUCCESS" : "FAIL"));		
+			if (!successGetLicense) {
+				System.err.println("Could not acquire license. Aborting");
+				System.exit(1);							
+			}
 		}
 		
-		if (new File(licenseFile).exists()) {
-			download(prefix, downloadBaseUrl, licenseFile);
-		} else {
-			System.err.println("License file doesn't exist at "+licenseFile);
-		}		
-		System.out.println("DONE");
+		String titleAuthor = xpathParser.getTitleAuthorString(); 
+		download(titleAuthor, outputDir, prefix, downloadBaseUrl, fullPathToLicenseFile);
+		
+		downloadCover(titleAuthor, xpathParser.getCoverUrl(), outputDir);
+				
+		System.out.println("DONE! Files are in "+outputDir);
 		
 	}	
+	
+	private static void printHeader() {
+		System.out.println();
+		String line = "***************************************************";
+		System.out.println(line);
+		System.out.println("Overdrive MP3 Downloader");
+		System.out.println("https://github.com/brianpipa/OverdriveMP3Downloader");		
+		System.out.println(line);
+		System.out.println();
+	}
 	
 	private static boolean acquireLicense(String licenseFile, String fullAcquisitionUrl) throws Exception {
 		//make the GET call.
@@ -91,8 +127,6 @@ public class OverdriveMp3 {
 		
 		con.disconnect();
 		
-		System.out.println(content.toString());
-		
 		if (isError) {
 			FileUtils.writeStringToFile(new File(licenseFile+".error"), content.toString(), "UTF-8");
 			return false;
@@ -102,32 +136,37 @@ public class OverdriveMp3 {
 		}		
 	}
 	
-	private static boolean download(String prefix, String baseUrl, String licenseFile) throws Exception {
+	private static boolean download(String titleAuthorString, String outputDir, String prefix, String baseUrl, String licenseFile) throws Exception {
 		licenseContents = FileUtils.readFileToString(new File(licenseFile), "UTF-8");
 
 		//this is messy but it works
 		clientId = licenseContents.split("<ClientID>")[1].split("</ClientID>")[0];;
 
-		File outputDir = new File(".", prefix);
-		if (!outputDir.exists()) {
-			outputDir.mkdir();
-		}
-		System.out.println("Output Folder: "+outputDir.getCanonicalPath());
-
 		for (String path : xpathParser.getPartsPaths()) {
 			String urlToFile = baseUrl + path;
-			downloadOne(urlToFile, outputDir.getCanonicalPath());
+			downloadOneMp3(titleAuthorString, urlToFile, outputDir);
 		}
 		return true;
 	}
 	
-	private static void downloadOne(String urlToDownload, String outputFolder) throws Exception {
-		
+	private static void downloadOneMp3(String titleAuthorString, String urlToDownload, String outputFolder) throws Exception {
 		String localFilename = urlToDownload.substring(urlToDownload.lastIndexOf("-")+1, urlToDownload.length());
-
-		String fullpathToLocalFile = outputFolder+"/"+localFilename;
+		localFilename = localFilename.replace(".mp3", "-"+titleAuthorString+".mp3");
+		String fullpathToLocalFile = outputFolder+File.separator+localFilename;		
+		downloadFile(urlToDownload, fullpathToLocalFile);		
+	}
+	
+	private static void downloadCover(String titleAuthor, String urlToDownload, String outputFolder) throws Exception {
+		String localFilename = titleAuthor+".jpg";
+		String fullpathToLocalFile = outputFolder+File.separator+localFilename;
 		
+		downloadFile(urlToDownload, fullpathToLocalFile);
+	}	
+	
+	private static void downloadFile(String urlToDownload, String fullpathToLocalFile) throws Exception {
+				
 		if (!(new File(fullpathToLocalFile).exists())) {
+			System.out.print("Downloading to "+fullpathToLocalFile);
 			URL url = new URL(urlToDownload);
 			HttpURLConnection con = (HttpURLConnection) url.openConnection();
 			con.setRequestMethod("GET");
@@ -147,8 +186,7 @@ public class OverdriveMp3 {
 				    output.write(buffer, 0, n);
 				}
 				output.close();
-				
-				System.out.println("Saved "+fullpathToLocalFile);				
+				System.out.println("  DONE");				
 			} else {
 				System.err.println("Failed to download "+ urlToDownload+" : HTTP status code = "+status);
 			}
@@ -157,4 +195,5 @@ public class OverdriveMp3 {
 			System.out.println("Already exists, not re-downloading: "+fullpathToLocalFile);
 		}		
 	}	
+	
 }

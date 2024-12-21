@@ -1,8 +1,9 @@
 package com.pipasoft.overdrivemp3;
 
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.StringReader;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,6 +12,7 @@ import javax.xml.xpath.XPathConstants;
 import javax.xml.xpath.XPathExpressionException;
 import javax.xml.xpath.XPathFactory;
 
+import org.apache.commons.io.FileUtils;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
@@ -19,16 +21,34 @@ import org.xml.sax.InputSource;
 public class OdmParserXpath {
 
 	private XPathFactory xpathFactory = XPathFactory.newInstance();
-	private File odmFile;
+	private String odmSourceString;
 
-	public OdmParserXpath(File odmFile) {
+	public OdmParserXpath(File odmFile) throws IOException {
 		super();
-		this.odmFile = odmFile;
+		odmSourceString = FileUtils.readFileToString(odmFile);
 	}
 
+	private String getTitle() {
+		return odmSourceString.split("<Title>")[1].split("</Title>")[0];	
+	}	
+
+	private String getAuthor() {
+		return odmSourceString.split("<Creator role=\"Author\" file-as=")[1].split("</Creator>")[0].split(">")[1];	
+	}
+	
+	public String getCoverUrl() {
+		return odmSourceString.split("<CoverUrl>")[1].split("</CoverUrl>")[0];			
+	}
+	
+	public String getTitleAuthorString() throws XPathExpressionException, FileNotFoundException {
+		String title = getTitle();
+		String author= getAuthor();
+			
+		return (title+"-by-"+author).replaceAll(" ", "_");		
+	}
+	
 	private InputSource getSource() throws FileNotFoundException {
-		//there's no way to reuse this?
-		return new InputSource(new FileInputStream(odmFile));
+		return new InputSource(new StringReader(odmSourceString));
 	}
 
 	public String getMediaId() throws XPathExpressionException, FileNotFoundException {
