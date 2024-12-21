@@ -11,8 +11,19 @@ This builds upon the work that was done by [chbrown](https://github.com/chbrown/
 * an .odm file from the library (instructions below)
 * This compiled code in the form of the .jar file - see the [releases page](https://github.com/brianpipa/OverdriveMP3Downloader/releases) to download it.
 
+## How it works
+When you run it, it will create a license file next to the ODM file, it will create a folder next to your ODM file with the same name and it will put the MP3s and the cover image in the new folder. For example, if your ODM file is at C:\Downloads\Eruption_9781668639344_10180481.odm, when you run it you will then have:
+* C:\Downloads\Eruption_9781668639344_10180481 (folder)
+* C:\Downloads\Eruption_9781668639344_10180481.odm.license
+* C:\Downloads\Eruption_9781668639344_10180481\*.mp3
+* C:\Downloads\Eruption_9781668639344_10180481\*.jpg
+
+NOTE: Once you have the .license file, do not delete it until you have all the MP3 files. They only allow you to get the license ONCE. 
+
+You can rerun the code on the odm file multiple times, but it will skip any files you already have.
+
 ## Obtain an ODM file
-This is a little trickier than it was before. Here is how I do it... Once I checkout an audiobook from Overdrive/Libby, go to your loans on the Overdrive site for you library. This URL will look like https://YOURLIBRARY.overdrive.com/account/loans - some actual examples are:  
+This is a little trickier than it used to be. Here is how I do it... Once I checkout an audiobook from Overdrive/Libby, go to your loans on the Overdrive site for you library. This URL will look like https://YOURLIBRARY.overdrive.com/account/loans - some actual examples are:  
 * https://wakegov.overdrive.com/account/loans
 * https://hcplc.overdrive.com/account/loans
 * https://alexandria.overdrive.com/account/loans
@@ -30,4 +41,6 @@ Maybe C:\OverdriveMP3Downloader or ~/username/apps/overdrivemp3downlaoder or wha
 Now from that command prompt, type `java -jar overdrivemp3.jar MyAudiobook.odm`
 and that should start the download of the MP3 files.
 ![sample](https://github.com/brianpipa/OverdriveMP3Downloader/blob/main/README-images/terminal-run.png?raw=true)
+
+Once you verify this works, you can try to use the [runscripts](https://github.com/brianpipa/OverdriveMP3Downloader/tree/main/runscripts) On Windows, you should be able to drag an odm file onto the batch file and it will download the MP3s for you. I don't have Windows so can't verify this works, but it should.
 
