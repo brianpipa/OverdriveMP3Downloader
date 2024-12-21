@@ -24,3 +24,10 @@ Now, in your browser's address bar, edit that URL and change audiobook-overdrive
 Once you have the URL changed, hit enter to visit that URL. That should cause your browser to download the .odm file which we will need for the next step. The .odm file will be in whatever folder you have your browser configured to use for your downloads.
 
 ## Running the code to get the MP3s
+I recommend putting the .jar file some where that makes sense for you.  
+Maybe C:\OverdriveMP3Downloader or ~/username/apps/overdrivemp3downlaoder or whatever works for you. Now first to see if this is working, open a prompt in the folder that the jar file is in. For this first test to make sure it works, copy your odm file into this folder. Let's assume for this example, your odm file is MyAudiobook.odm. So you should have both overdrivemp3.jar and MyAudiobook.odm in the same folder.
+
+Now from that command prompt, type `java -jar overdrivemp3.jar MyAudiobook.odm`
+and that should start the download of the MP3 files.
+![sample](https://github.com/brianpipa/OverdriveMP3Downloader/blob/main/README-images/terminal-run.png?raw=true)
+
