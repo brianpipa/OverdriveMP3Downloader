@@ -33,8 +33,6 @@ public class OverdriveMp3 {
 			System.exit(1);
 		}
 		
-		
-		//String odmFileName = "Dust_9798212197700_9253919.odm";
 		String fullOdmFileName = args[0];
 		File odmFile = new File(fullOdmFileName);
 		if (!odmFile.exists()) {
@@ -44,6 +42,7 @@ public class OverdriveMp3 {
 		
 		System.out.println("Using ODM file: "+odmFile.getCanonicalPath());
 		
+		//create a directory next to the ODM file to put the files into
 		String shortOdmName = odmFile.getName();
 		String outputDir = odmFile.getCanonicalPath().replace(".odm", "");
 		File outputDirFile = new File(outputDir);
@@ -58,6 +57,7 @@ public class OverdriveMp3 {
 
 		String downloadBaseUrl = xpathParser.getBaseUrl();
 		
+		//get the license if we need to. Put it next to the .odm file
 		if (!new File(fullPathToLicenseFile).exists()) {
 			String clientId = UUID.randomUUID().toString().toUpperCase();		
 			String acquisitionUrl = xpathParser.getAcquisitionUrl();			
@@ -74,13 +74,13 @@ public class OverdriveMp3 {
 			}
 		}
 		
-		String titleAuthor = xpathParser.getTitleAuthorString(); 
-		download(titleAuthor, outputDir, prefix, downloadBaseUrl, fullPathToLicenseFile);
+		//at this point we should have the license.
 		
+		String titleAuthor = xpathParser.getTitleAuthorString(); 
+		downloadMp3s(titleAuthor, outputDir, prefix, downloadBaseUrl, fullPathToLicenseFile);		
 		downloadCover(titleAuthor, xpathParser.getCoverUrl(), outputDir);
 				
-		System.out.println("DONE! Files are in "+outputDir);
-		
+		System.out.println("DONE! Files are in "+outputDir);		
 	}	
 	
 	private static void printHeader() {
@@ -93,23 +93,18 @@ public class OverdriveMp3 {
 		System.out.println();
 	}
 	
-	private static boolean acquireLicense(String licenseFile, String fullAcquisitionUrl) throws Exception {
-		//make the GET call.
-		//set useragent to USER_AGENT
-		//follow redirects
-		//--compressed    Request compressed response
-		
+	private static boolean acquireLicense(String licenseFile, String fullAcquisitionUrl) throws Exception {		
 		URL url = new URL(fullAcquisitionUrl);
 		HttpURLConnection con = (HttpURLConnection) url.openConnection();
 		con.setRequestMethod("GET");
 		con.setRequestProperty("User-Agent",USER_AGENT);
 		con.setInstanceFollowRedirects(true);
 		
-		int status = con.getResponseCode();
 
 		Reader streamReader = null;
-
 		boolean isError = false;
+		int status = con.getResponseCode();
+		
 		if (status > 299) {
 		    streamReader = new InputStreamReader(con.getErrorStream());
 		    isError = true;
@@ -136,7 +131,7 @@ public class OverdriveMp3 {
 		}		
 	}
 	
-	private static boolean download(String titleAuthorString, String outputDir, String prefix, String baseUrl, String licenseFile) throws Exception {
+	private static boolean downloadMp3s(String titleAuthorString, String outputDir, String prefix, String baseUrl, String licenseFile) throws Exception {
 		licenseContents = FileUtils.readFileToString(new File(licenseFile), "UTF-8");
 
 		//this is messy but it works

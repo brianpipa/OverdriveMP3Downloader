@@ -18,6 +18,12 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
 
+/**
+ * parses the .odm file into usable pieces
+ * 
+ * @author bpipa
+ *
+ */
 public class OdmParserXpath {
 
 	private XPathFactory xpathFactory = XPathFactory.newInstance();
