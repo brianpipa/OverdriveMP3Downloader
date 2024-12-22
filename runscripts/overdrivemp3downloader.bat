@@ -1,2 +1,2 @@
-java -jar overdrivemp3downloader.jar %1
+java -jar overdrivemp3.jar %1
 pause
