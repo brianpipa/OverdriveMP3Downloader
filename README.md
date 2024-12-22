@@ -4,7 +4,7 @@ As of late 2024, Overdrive discontinued their Overdrive Media Console applicatio
 
 ## Thanks
 
-This builds upon the work that was done by [chbrown](https://github.com/chbrown/overdrive) - my code is just a java rewrite of his code so it's easier to run on other operating systems, like Windows.
+This builds upon the work that was done by [chbrown](https://github.com/chbrown/overdrive) - my code is just a java rewrite of his code so it's easier to run on other operating systems, like Windows. If you are on linux, I encourage you to use his script - it works great.
 
 ## Requirements
 * java installed and working - it should be at least version 8. I'm not going to teach you how to do that - google it if you don't know. You should have your system setup so that you can type java -version in a terminal/command prompt and it will work and tell you what version of java you have installed.
@@ -42,7 +42,7 @@ Now from that command prompt, type `java -jar overdrivemp3.jar MyAudiobook.odm`
 and that should start the download of the MP3 files.
 ![sample](https://github.com/brianpipa/OverdriveMP3Downloader/blob/main/README-images/terminal-run.png?raw=true)
 
-Once you verify this works, you can leave the ODM file wherever you want and just pass it in as a parameter like `java -jar overdrivemp3.jar path\to\MyAudiobook.odm` and you can even try to use the [runscripts](https://github.com/brianpipa/OverdriveMP3Downloader/tree/main/runscripts) On Windows, you should be able to drag an odm file onto the batch file and it will download the MP3s for you. I don't have Windows so can't verify this works, but it should. If you are even more clever, you can configure your browser to automatically run this script on any ODM file you download by associating (in the browser) .odm files with the script. 
+Once you verify this works, you can leave the ODM file wherever you want and just pass it in as a parameter like `java -jar overdrivemp3.jar path\to\MyAudiobook.odm` and you can even try use the [runscripts](https://github.com/brianpipa/OverdriveMP3Downloader/tree/main/runscripts) On Windows, you can drag an odm file onto the batch file and it will download the MP3s for you. If you are even more clever, you can configure your browser to automatically run this script on any ODM file you download by associating (in the browser) .odm files with the script. 
 
 Once you have the MP3s, you can delete the .odm file. Don't forget to delete the MP3s once they are due back to the library.
 
