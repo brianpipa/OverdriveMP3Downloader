@@ -20,29 +20,28 @@ When you run it, it will create a license file next to the ODM file, it will cre
 
 NOTE: Once you have the .license file, do not delete it until you have all the MP3 files. They only allow you to get the license ONCE. 
 
-You can rerun the code on the odm file multiple times, but it will skip any files you already have.
+You can rerun the code on the ODM file multiple times, but it will skip any files you already have. if you need it to download the file(s) again, delete the MP3(s) or the cover image and it will re-download them.
 
 ## Obtain an ODM file
-This is a little trickier than it used to be. Here is how I do it... Once I checkout an audiobook from Overdrive/Libby, go to your loans on the Overdrive site for you library. This URL will look like https://YOURLIBRARY.overdrive.com/account/loans - some actual examples are:  
+This is a little trickier than it used to be. Here is how I do it... Once you checkout an audiobook from Overdrive/Libby, go to your loans on the Overdrive site for you library. This URL will look like https://YOURLIBRARY.overdrive.com/account/loans - some actual examples are:  
 * https://wakegov.overdrive.com/account/loans
 * https://hcplc.overdrive.com/account/loans
 * https://alexandria.overdrive.com/account/loans
 
-Once there, you will see a button on your audiobook that says "Listen now in browser". RIght click on that button and copy the url, then paste it into a new tab in your browser. The link will look something like this: https://YOURLIBRARY.overdrive.com/media/download/audiobook-overdrive/1234567
+Once there, you will see a button on your audiobook that says "Listen now in browser". Right-click on that button and copy the url, then paste it into a new tab in your browser. The link will look something like this: https://YOURLIBRARY.overdrive.com/media/download/audiobook-overdrive/1234567
 
-Now, in your browser's address bar, edit that URL and change audiobook-overdrive to audiobook-mp3. So for example, if the URL was https://wakegov.overdrive.com/media/download/audiobook-overdrive/5981536 then it should now be https://wakegov.overdrive.com/media/download/audiobook-mp3/5981536
+Now, in your browser's address bar, edit that URL and change audiobook-overdrive to audiobook-mp3. So for example, if the URL was https://wakegov.overdrive.com/media/download/audiobook-overdrive/1234567 then it should now be https://wakegov.overdrive.com/media/download/audiobook-mp3/1234567
 
 Once you have the URL changed, hit enter to visit that URL. That should cause your browser to download the .odm file which we will need for the next step. The .odm file will be in whatever folder you have your browser configured to use for your downloads.
 
 ## Running the code to get the MP3s
-I recommend putting the .jar file some where that makes sense for you.  
-Maybe C:\OverdriveMP3Downloader or ~/username/apps/overdrivemp3downloader or whatever works for you. Now first to see if this is working, open a prompt in the folder that the jar file is in. For this first test to make sure it works, copy your odm file into this folder. Let's assume for this example, your odm file is MyAudiobook.odm. So you should have both overdrivemp3.jar and MyAudiobook.odm in the same folder.
+I recommend putting the .jar file somewhere that makes sense for you. Maybe C:\OverdriveMP3Downloader or ~/username/apps/overdrivemp3downloader or whatever works for you. Now first to see if this is working, open a command prompt/terminal in the folder that the jar file is in. For this first test to make sure it works, copy your ODM file into this folder. Let's assume for this example, your ODM file is MyAudiobook.odm. So you should have both overdrivemp3.jar and MyAudiobook.odm in the same folder.
 
-Now from that command prompt, type `java -jar overdrivemp3.jar MyAudiobook.odm`
-and that should start the download of the MP3 files.
+Now from the command prompt/terminal you opened, type `java -jar overdrivemp3.jar MyAudiobook.odm`
+and that should start the download of the MP3 files and you should see something like this:
 ![sample](https://github.com/brianpipa/OverdriveMP3Downloader/blob/main/README-images/terminal-run.png?raw=true)
 
-Once you verify this works, you can leave the ODM file wherever you want and just pass it in as a parameter like `java -jar overdrivemp3.jar path\to\MyAudiobook.odm` and you can even try use the [runscripts](https://github.com/brianpipa/OverdriveMP3Downloader/tree/main/runscripts) On Windows, you can drag an odm file onto the batch file and it will download the MP3s for you. If you are even more clever, you can configure your browser to automatically run this script on any ODM file you download by associating (in the browser) .odm files with the script. 
+Once you verify this works, you can leave the ODM file wherever you want and just pass it in as a parameter like `java -jar overdrivemp3.jar path\to\MyAudiobook.odm` and you can even try use the [runscripts](https://github.com/brianpipa/OverdriveMP3Downloader/tree/main/runscripts) On Windows, you can drag an ODM file onto the batch file and it will download the MP3s for you. If you are even more clever, you can configure your browser to automatically run this script on any ODM file you download by associating (in the browser) .odm files with the script. 
 
-Once you have the MP3s, you can delete the .odm file. Don't forget to delete the MP3s once they are due back to the library.
+Once you have the MP3s, you can delete the .odm file. Don't forget to delete the MP3s once they are due back to the library!
 
