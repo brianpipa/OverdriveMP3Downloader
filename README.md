@@ -12,11 +12,11 @@ This builds upon the work that was done by [chbrown](https://github.com/chbrown/
 * This compiled code in the form of the .jar file - see the [releases page](https://github.com/brianpipa/OverdriveMP3Downloader/releases) to download it.
 
 ## How it works
-When you run it, it will create a license file next to the ODM file, it will create a folder next to your ODM file with the same name and it will put the MP3s and the cover image in the new folder. For example, if your ODM file is at C:\Downloads\Eruption_9781668639344_10180481.odm, when you run it you will then have:
-* C:\Downloads\Eruption_9781668639344_10180481 (folder)
-* C:\Downloads\Eruption_9781668639344_10180481.odm.license
-* C:\Downloads\Eruption_9781668639344_10180481\\*.mp3
-* C:\Downloads\Eruption_9781668639344_10180481\\*.jpg
+When you run it, it will create a license file next to the ODM file, it will create a folder next to your ODM file with the same name and it will put the MP3s and the cover image in the new folder. For example, if your ODM file is at C:\Downloads\BookName_987654321098_12345678.odm, when you run it you will then have:
+* C:\Downloads\BookName_987654321098_12345678 (folder)
+* C:\Downloads\BookName_987654321098_12345678.odm.license
+* C:\Downloads\BookName_987654321098_12345678\\*.mp3
+* C:\Downloads\BookName_987654321098_12345678\\*.jpg
 
 NOTE: Once you have the .license file, do not delete it until you have all the MP3 files. They only allow you to get the license ONCE. 
 
