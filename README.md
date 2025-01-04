@@ -1,6 +1,6 @@
-# Overdrive Libby MP3 Downloader
+# OverDrive Libby MP3 Downloader
 
-As of late 2024, Overdrive discontinued their Overdrive Media Console application in favor of the Libby application. This works to play the audiobooks, but doesn't allow you access to the raw, non-DRM MP3 files any more. This means many people who use things like standalone MP3 players can no longer use them to listen to audiobooks from the library. This code allows you to again download the MP3s.  
+As of late 2024, OverDrive discontinued their OverDrive Media Console application in favor of the Libby application. This works to play the audiobooks, but doesn't allow you access to the raw, non-DRM MP3 files any more. This means many people who use things like standalone MP3 players can no longer use them to listen to audiobooks from the library. This code allows you to again download the MP3s.  
 
 NOTE: There's no telling how long this will work, but if you don't see a message here saying it no longer works, it should still work.
 
@@ -25,7 +25,7 @@ NOTE: Once you have the .license file, do not delete it until you have all the M
 You can rerun the code on the ODM file multiple times, but it will skip any files you already have. if you need it to download the file(s) again, delete the MP3(s) or the cover image and it will re-download them.
 
 ## Obtain an ODM file
-This is a little trickier than it used to be. Here is how I do it... Once you checkout an audiobook from Overdrive/Libby, go to your loans on the Overdrive site for you library. This URL will look like https://YOURLIBRARY.overdrive.com/account/loans - some actual examples are:  
+This is a little trickier than it used to be. Here is how I do it... Once you checkout an audiobook from OverDrive/Libby, go to your loans on the OverDrive site for you library. This URL will look like https://YOURLIBRARY.overdrive.com/account/loans - some actual examples are:  
 * https://wakegov.overdrive.com/account/loans
 * https://hcplc.overdrive.com/account/loans
 * https://alexandria.overdrive.com/account/loans
@@ -36,7 +36,7 @@ Now, in your browser's address bar, edit that URL and change audiobook-overdrive
 
 Once you have the URL changed, hit enter to visit that URL. That should cause your browser to download the .odm file which we will need for the next step. The .odm file will be in whatever folder you have your browser configured to use for your downloads.
 
-ALTERNATE WAY
+ALTERNATE WAY FOR FIREFOX USERS  
 Use Firefox and install this plugin: https://addons.mozilla.org/en-US/firefox/addon/overdrive-download-odm-button/ and it will change the button on the Overdrive page to an ODM download button
 
 ## Running the code to get the MP3s
