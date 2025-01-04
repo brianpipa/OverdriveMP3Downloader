@@ -146,15 +146,13 @@ public class OverdriveMp3 {
 	
 	private static void downloadOneMp3(String titleAuthorString, String urlToDownload, String outputFolder) throws Exception {
 		String localFilename = urlToDownload.substring(urlToDownload.lastIndexOf("-")+1, urlToDownload.length());
-		localFilename = localFilename.replace(".mp3", "-"+titleAuthorString+".mp3");
 		String fullpathToLocalFile = outputFolder+File.separator+localFilename;		
 		downloadFile(urlToDownload, fullpathToLocalFile);		
 	}
 	
 	private static void downloadCover(String titleAuthor, String urlToDownload, String outputFolder) throws Exception {
-		String localFilename = titleAuthor+".jpg";
-		String fullpathToLocalFile = outputFolder+File.separator+localFilename;
-		
+		String localFilename = "cover.jpg";
+		String fullpathToLocalFile = outputFolder+File.separator+localFilename;		
 		downloadFile(urlToDownload, fullpathToLocalFile);
 	}	
 	
