@@ -46,7 +46,7 @@ Now from the command prompt/terminal you opened, type `java -jar overdrivemp3.ja
 and that should start the download of the MP3 files and you should see something like this:
 ![sample](https://github.com/brianpipa/OverdriveMP3Downloader/blob/main/README-images/terminal-run.png?raw=true)
 
-Once you verify this works, you can leave the ODM file wherever you want and just pass it in as a parameter like `java -jar overdrivemp3.jar path\to\MyAudiobook.odm` and you can even try use the [runscripts](https://github.com/brianpipa/OverdriveMP3Downloader/tree/main/runscripts) On Windows, you can drag an ODM file onto the batch file and it will download the MP3s for you. If you are even more clever, you can configure your browser to automatically run this script on any ODM file you download by associating (in the browser) .odm files with the script. 
+Once you verify this works, you can leave the ODM file wherever you want and just pass it in as a parameter like `java -jar overdrivemp3.jar path\to\MyAudiobook.odm` and you can even try use the [runscripts](https://github.com/brianpipa/OverdriveMP3Downloader/tree/main/runscripts) On Windows, you can drag an ODM file onto the Windows batch file and it will download the MP3s for you. If you are even more clever, you can configure your browser to automatically run this script on any ODM file you download by associating (in the browser) .odm files with the script. 
 
-Once you have the MP3s, you can delete the .odm file. Don't forget to delete the MP3s once they are due back to the library!
+Once you have the MP3s, you can delete the .odm file and the license file. Don't forget to delete the MP3s once they are due back to the library!
 
