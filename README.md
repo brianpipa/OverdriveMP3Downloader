@@ -22,7 +22,7 @@ When you run it, it will create a license file next to the ODM file, it will cre
 
 NOTE: Once you have the .license file, do not delete it until you have all the MP3 files. They only allow you to get the license ONCE. 
 
-You can rerun the code on the ODM file multiple times, but it will skip any files you already have. If you need it to download the file(s) again, delete the MP3s or the cover image and it will re-download them as long as the license fiel is still in place.
+You can rerun the code on the ODM file multiple times, but it will skip any files you already have. If you need it to download the file(s) again, delete the MP3s or the cover image and it will re-download them as long as the license file is still in place.
 
 ## Obtain an ODM file
 This is a little trickier than it used to be. Here is how I do it... Once you checkout an audiobook from OverDrive/Libby, go to your loans on the OverDrive site for you library. This URL will look like https://YOURLIBRARY.overdrive.com/account/loans - some actual examples are:  
