@@ -1,4 +1,6 @@
-# OverDrive Libby MP3 Downloader
+# UPDATE: As of February 1, 2025 (or so), this no longer works. Overdrive has removed the ability to download the ODM file (it returns a 404 error now). I'm leaviung this project online in case the code helps anyone.
+
+## OverDrive Libby MP3 Downloader
 
 As of late 2024, OverDrive discontinued their OverDrive Media Console application in favor of the Libby application. This works to play the audiobooks, but doesn't allow you access to the raw, non-DRM MP3 files any more. This means many people who use things like standalone MP3 players can no longer use them to listen to audiobooks from the library. This code allows you to again download the MP3s.  
 
