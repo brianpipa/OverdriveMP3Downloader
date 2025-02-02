@@ -1,4 +1,4 @@
-# UPDATE: As of February 1, 2025 (or so), this no longer works. Overdrive has removed the ability to download the ODM file (it returns a 404 error now). I'm leaviung this project online in case the code helps anyone.
+# UPDATE: As of February 1, 2025 (or so), this no longer works. Overdrive has removed the ability to download the ODM file (it returns a 404 error now). I'm leaving this project online in case the code helps anyone.
 
 ## OverDrive Libby MP3 Downloader
 
